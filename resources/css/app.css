@@ -1,0 +1,371 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/*
+ * TGM HR — "instrument panel"
+ * A time clock answers two questions: what time is it, and am I in the right
+ * place. The palette is cool navy instrumentation, aged brass for warnings,
+ * and a signal mint for "you're good".
+ */
+:root {
+    --base: #eef1f6;
+    --sunken: #e3e8f0;
+    --panel: #ffffff;
+    --panel-raised: #ffffff;
+    --line: #d3dae6;
+    --line-soft: #e5eaf2;
+
+    --text: #101828;
+    --text-muted: #5b6779;
+    --text-faint: #8996a8;
+
+    --signal: #12a67e;
+    --signal-soft: #d7f2e9;
+    --brass: #a8791d;
+    --brass-soft: #f6e9cc;
+    --alert: #c8412a;
+    --alert-soft: #fadfd9;
+    --beacon: #3b5bdb;
+    --beacon-soft: #dee5fb;
+
+    --ring-track: #dde3ed;
+    --shadow-panel:
+        0 1px 2px rgb(16 24 40 / 0.05), 0 8px 24px -12px rgb(16 24 40 / 0.12);
+    --shadow-lift:
+        0 2px 4px rgb(16 24 40 / 0.06), 0 18px 40px -16px rgb(16 24 40 / 0.24);
+}
+
+.dark {
+    --base: #0b1120;
+    --sunken: #070c16;
+    --panel: #131c2e;
+    --panel-raised: #1a2437;
+    --line: #253148;
+    --line-soft: #1d2739;
+
+    --text: #e8edf6;
+    --text-muted: #96a3ba;
+    --text-faint: #6b7a94;
+
+    --signal: #35d0a5;
+    --signal-soft: #10312a;
+    --brass: #d9a441;
+    --brass-soft: #33270f;
+    --alert: #f2705a;
+    --alert-soft: #3a1a15;
+    --beacon: #7c95f5;
+    --beacon-soft: #16204a;
+
+    --ring-track: #22304a;
+    --shadow-panel:
+        0 1px 2px rgb(0 0 0 / 0.4), 0 12px 32px -16px rgb(0 0 0 / 0.6);
+    --shadow-lift:
+        0 2px 6px rgb(0 0 0 / 0.5), 0 24px 56px -20px rgb(0 0 0 / 0.75);
+}
+
+@theme inline {
+    --font-sans:
+        'Instrument Sans', ui-sans-serif, system-ui, sans-serif,
+        'Apple Color Emoji', 'Segoe UI Emoji';
+    --font-display:
+        'Bricolage Grotesque', 'Instrument Sans', ui-sans-serif, system-ui,
+        sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+    --color-base: var(--base);
+    --color-sunken: var(--sunken);
+    --color-panel: var(--panel);
+    --color-panel-raised: var(--panel-raised);
+    --color-line: var(--line);
+    --color-line-soft: var(--line-soft);
+
+    --color-text: var(--text);
+    --color-muted: var(--text-muted);
+    --color-faint: var(--text-faint);
+
+    --color-signal: var(--signal);
+    --color-signal-soft: var(--signal-soft);
+    --color-brass: var(--brass);
+    --color-brass-soft: var(--brass-soft);
+    --color-alert: var(--alert);
+    --color-alert-soft: var(--alert-soft);
+    --color-beacon: var(--beacon);
+    --color-beacon-soft: var(--beacon-soft);
+
+    --shadow-panel: var(--shadow-panel);
+    --shadow-lift: var(--shadow-lift);
+}
+
+@layer base {
+    * {
+        border-color: var(--line);
+    }
+
+    html {
+        -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+        background-color: var(--base);
+        color: var(--text);
+    }
+
+    :focus-visible {
+        outline: 2px solid var(--beacon);
+        outline-offset: 2px;
+        border-radius: 4px;
+    }
+
+    ::selection {
+        background: var(--beacon);
+        color: #fff;
+    }
+
+    * {
+        scrollbar-width: thin;
+        scrollbar-color: var(--line) transparent;
+    }
+
+    *::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+    }
+
+    *::-webkit-scrollbar-thumb {
+        background: var(--line);
+        border-radius: 99px;
+        border: 3px solid transparent;
+        background-clip: content-box;
+    }
+}
+
+@layer components {
+    /* Numbers are data here — keep every digit the same width. */
+    .tabular {
+        font-variant-numeric: tabular-nums;
+        font-feature-settings: 'tnum';
+    }
+
+    /* The small stamped label that sits above every panel and section. */
+    .eyebrow {
+        font-family: var(--font-mono);
+        font-size: 0.6875rem;
+        font-weight: 500;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--text-faint);
+    }
+}
+
+/* ---- Motion ------------------------------------------------------------ */
+
+@keyframes rise {
+    from {
+        opacity: 0;
+        transform: translateY(14px);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes pop-in {
+    0% {
+        opacity: 0;
+        transform: scale(0.94) translateY(8px);
+    }
+    60% {
+        transform: scale(1.01) translateY(0);
+    }
+    100% {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* GPS acquisition: rings expanding outward from the punch dial. */
+@keyframes lock-ping {
+    0% {
+        opacity: 0.55;
+        transform: scale(0.82);
+    }
+    70% {
+        opacity: 0;
+        transform: scale(1.35);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(1.35);
+    }
+}
+
+@keyframes sweep {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes drop-in {
+    from {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@keyframes shimmer {
+    from {
+        background-position: -200% 0;
+    }
+    to {
+        background-position: 200% 0;
+    }
+}
+
+@keyframes nudge {
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+    20%,
+    60% {
+        transform: translateX(-4px);
+    }
+    40%,
+    80% {
+        transform: translateX(4px);
+    }
+}
+
+.animate-rise {
+    animation: rise 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-fade-in {
+    animation: fade-in 0.4s ease both;
+}
+
+.animate-pop-in {
+    animation: pop-in 0.36s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-drop-in {
+    animation: drop-in 0.14s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-nudge {
+    animation: nudge 0.4s ease;
+}
+
+.animate-sweep {
+    animation: sweep 1.6s linear infinite;
+}
+
+.animate-lock-ping {
+    animation: lock-ping 1.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.skeleton {
+    background: linear-gradient(
+        90deg,
+        var(--line-soft) 25%,
+        var(--line) 37%,
+        var(--line-soft) 63%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.4s ease-in-out infinite;
+}
+
+/* Stagger helper: children rise in sequence on page load. */
+.stagger > * {
+    animation: rise 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.stagger > *:nth-child(1) {
+    animation-delay: 0.02s;
+}
+.stagger > *:nth-child(2) {
+    animation-delay: 0.08s;
+}
+.stagger > *:nth-child(3) {
+    animation-delay: 0.14s;
+}
+.stagger > *:nth-child(4) {
+    animation-delay: 0.2s;
+}
+.stagger > *:nth-child(5) {
+    animation-delay: 0.26s;
+}
+.stagger > *:nth-child(6) {
+    animation-delay: 0.32s;
+}
+.stagger > *:nth-child(7) {
+    animation-delay: 0.38s;
+}
+.stagger > *:nth-child(8) {
+    animation-delay: 0.44s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* ---- Leaflet, restyled for the panel surfaces -------------------------- */
+
+.leaflet-container {
+    background: var(--sunken);
+    font-family: var(--font-sans);
+    z-index: 0;
+}
+
+.leaflet-control-attribution {
+    background: color-mix(in srgb, var(--panel) 80%, transparent) !important;
+    color: var(--text-faint) !important;
+    font-size: 10px !important;
+}
+
+.leaflet-control-attribution a {
+    color: var(--text-muted) !important;
+}
+
+.leaflet-bar a {
+    background: var(--panel) !important;
+    color: var(--text) !important;
+    border-color: var(--line) !important;
+}
+
+.leaflet-bar a:hover {
+    background: var(--panel-raised) !important;
+}
+
+.dark .leaflet-tile-pane {
+    filter: invert(1) hue-rotate(190deg) brightness(0.92) contrast(0.88)
+        saturate(0.7);
+}
