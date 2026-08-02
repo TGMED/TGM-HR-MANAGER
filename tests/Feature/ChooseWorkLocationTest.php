@@ -22,8 +22,8 @@ class ChooseWorkLocationTest extends TestCase
         return array_merge([
             'name' => 'Amara Nwosu',
             'email' => 'amara@tgm.test',
-            'password' => 'correct-horse-battery',
-            'password_confirmation' => 'correct-horse-battery',
+            'password' => 'Correct-Horse-Battery-9',
+            'password_confirmation' => 'Correct-Horse-Battery-9',
         ], $overrides);
     }
 

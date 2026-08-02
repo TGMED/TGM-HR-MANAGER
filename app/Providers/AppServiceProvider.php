@@ -56,14 +56,18 @@ class AppServiceProvider extends ServiceProvider
             app()->isProduction(),
         );
 
-        Password::defaults(fn (): ?Password => app()->isProduction()
-            ? Password::min(12)
-                ->mixedCase()
-                ->letters()
-                ->numbers()
-                ->symbols()
-                ->uncompromised()
-            : null,
+        // The signup form mirrors these rules as a live checklist, so they must
+        // hold in every environment. Only the breach check — which costs an
+        // HTTP round trip — stays gated to production.
+        Password::defaults(fn (): Password => Password::min(8)
+            ->mixedCase()
+            ->letters()
+            ->numbers()
+            ->symbols()
+            ->when(
+                app()->isProduction(),
+                fn (Password $rule): Password => $rule->uncompromised(),
+            ),
         );
     }
 }

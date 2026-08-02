@@ -6,6 +6,7 @@ use App\Enums\Role;
 use App\Models\Location;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class RegistrationTest extends TestCase
@@ -22,9 +23,39 @@ class RegistrationTest extends TestCase
             'email' => 'amara@tgm.test',
             'department' => 'Engineering',
             'position' => 'Technician',
-            'password' => 'correct-horse-battery',
-            'password_confirmation' => 'correct-horse-battery',
+            'password' => 'Correct-Horse-Battery-9',
+            'password_confirmation' => 'Correct-Horse-Battery-9',
         ], $overrides);
+    }
+
+    /**
+     * The signup form mirrors these rules as a live checklist, so they have to
+     * hold outside production too.
+     *
+     * @return array<string, array{0: string, 1: bool}>
+     */
+    public static function passwordProvider(): array
+    {
+        return [
+            'eight chars is enough' => ['Ab3!wxyz', true],
+            'seven chars is not' => ['Ab3!wxy', false],
+            'needs a number' => ['Abcd!wxyz', false],
+            'needs a symbol' => ['Abcd3wxyz', false],
+            'needs mixed case' => ['abcd3!wxyz', false],
+        ];
+    }
+
+    #[DataProvider('passwordProvider')]
+    public function test_signup_enforces_the_password_rules(string $password, bool $accepted): void
+    {
+        $response = $this->post('/register', $this->payload([
+            'password' => $password,
+            'password_confirmation' => $password,
+        ]));
+
+        $accepted
+            ? $response->assertSessionHasNoErrors()
+            : $response->assertSessionHasErrors('password');
     }
 
     public function test_the_signup_screen_renders(): void

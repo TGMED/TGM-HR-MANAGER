@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { Head, useForm } from '@inertiajs/vue3';
 import AppButton from '@/components/ui/AppButton.vue';
+import PasswordChecklist from '@/components/ui/PasswordChecklist.vue';
 import TextField from '@/components/ui/TextField.vue';
 import AuthLayout from '@/layouts/AuthLayout.vue';
 
@@ -58,6 +59,8 @@ function submit() {
                 required
                 :error="form.errors.password_confirmation"
             />
+
+            <PasswordChecklist :password="form.password" />
 
             <AppButton
                 type="submit"

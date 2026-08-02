@@ -122,8 +122,8 @@ class AdminDoesNotClockTest extends TestCase
             'name' => 'Second Admin',
             'email' => 'second@tgm.test',
             'role' => Role::SuperAdmin->value,
-            'password' => 'correct-horse-battery',
-            'password_confirmation' => 'correct-horse-battery',
+            'password' => 'Correct-Horse-Battery-9',
+            'password_confirmation' => 'Correct-Horse-Battery-9',
         ])->assertSessionHasNoErrors();
 
         $this->assertDatabaseHas('users', [
@@ -140,8 +140,8 @@ class AdminDoesNotClockTest extends TestCase
             'name' => 'No Site',
             'email' => 'nosite@tgm.test',
             'role' => Role::Staff->value,
-            'password' => 'correct-horse-battery',
-            'password_confirmation' => 'correct-horse-battery',
+            'password' => 'Correct-Horse-Battery-9',
+            'password_confirmation' => 'Correct-Horse-Battery-9',
         ])->assertSessionHasErrors('location_id');
     }
 

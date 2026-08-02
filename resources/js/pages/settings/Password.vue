@@ -2,6 +2,7 @@
 import { Head, useForm } from '@inertiajs/vue3';
 import AppButton from '@/components/ui/AppButton.vue';
 import Panel from '@/components/ui/Panel.vue';
+import PasswordChecklist from '@/components/ui/PasswordChecklist.vue';
 import TextField from '@/components/ui/TextField.vue';
 import AppLayout from '@/layouts/AppLayout.vue';
 
@@ -59,6 +60,8 @@ function submit() {
                         required
                         :error="form.errors.password_confirmation"
                     />
+
+                    <PasswordChecklist :password="form.password" />
 
                     <div class="flex justify-end pt-2">
                         <AppButton type="submit" :loading="form.processing">

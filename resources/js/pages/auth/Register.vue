@@ -3,6 +3,7 @@ import { Head, Link, useForm } from '@inertiajs/vue3';
 import { computed } from 'vue';
 import AppButton from '@/components/ui/AppButton.vue';
 import LocationSelect from '@/components/ui/LocationSelect.vue';
+import PasswordChecklist from '@/components/ui/PasswordChecklist.vue';
 import TextField from '@/components/ui/TextField.vue';
 import AuthLayout from '@/layouts/AuthLayout.vue';
 
@@ -142,6 +143,8 @@ function submit() {
                     required
                 />
             </div>
+
+            <PasswordChecklist :password="form.password" />
 
             <AppButton type="submit" size="lg" block :loading="form.processing">
                 Create account

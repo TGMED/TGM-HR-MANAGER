@@ -53,8 +53,8 @@ class StaffManagementTest extends TestCase
             'role' => Role::Staff->value,
             'department' => 'Engineering',
             'location_id' => $this->location->id,
-            'password' => 'correct-horse-battery',
-            'password_confirmation' => 'correct-horse-battery',
+            'password' => 'Correct-Horse-Battery-9',
+            'password_confirmation' => 'Correct-Horse-Battery-9',
         ])->assertSessionHasNoErrors();
 
         $this->assertDatabaseHas('users', [
@@ -71,8 +71,8 @@ class StaffManagementTest extends TestCase
             'name' => 'No Site',
             'email' => 'nosite@tgm.test',
             'role' => Role::Staff->value,
-            'password' => 'correct-horse-battery',
-            'password_confirmation' => 'correct-horse-battery',
+            'password' => 'Correct-Horse-Battery-9',
+            'password_confirmation' => 'Correct-Horse-Battery-9',
         ])->assertSessionHasErrors('location_id');
 
         $this->assertDatabaseMissing('users', ['email' => 'nosite@tgm.test']);
@@ -86,8 +86,8 @@ class StaffManagementTest extends TestCase
                 'email' => 'sneaky@tgm.test',
                 'role' => Role::SuperAdmin->value,
                 'location_id' => $this->location->id,
-                'password' => 'correct-horse-battery',
-                'password_confirmation' => 'correct-horse-battery',
+                'password' => 'Correct-Horse-Battery-9',
+                'password_confirmation' => 'Correct-Horse-Battery-9',
             ])
             ->assertForbidden();
 
