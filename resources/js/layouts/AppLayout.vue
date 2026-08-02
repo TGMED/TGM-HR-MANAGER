@@ -139,7 +139,7 @@ watch(currentUrl, () => {
                 >
                     <span
                         :class="[
-                            'absolute top-1/2 left-0 h-5 w-[3px] -translate-y-1/2 rounded-r-full bg-signal',
+                            'absolute top-1/2 left-0 h-5 w-[3px] -translate-y-1/2 rounded-r-full bg-brand',
                             'transition-all duration-300 ease-out',
                             isCurrent(item.href)
                                 ? 'opacity-100'

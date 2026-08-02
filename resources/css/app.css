@@ -32,6 +32,15 @@
     --beacon: #3b5bdb;
     --beacon-soft: #dee5fb;
 
+    /*
+     * Brand. The logo's red is a scanned pure #ff0000 — too hot for UI and it
+     * can't carry white label text, so it's tuned down to a shade that clears
+     * 4.5:1. Deliberately narrow in scope: primary actions and the nav's
+     * current-page marker only. Status colour stays with --signal.
+     */
+    --brand: #d92d22;
+    --brand-soft: #fbe1de;
+
     --ring-track: #dde3ed;
     --shadow-panel:
         0 1px 2px rgb(16 24 40 / 0.05), 0 8px 24px -12px rgb(16 24 40 / 0.12);
@@ -59,6 +68,11 @@
     --alert-soft: #3a1a15;
     --beacon: #7c95f5;
     --beacon-soft: #16204a;
+
+    /* The red holds up against the navy panels unchanged; only the wash
+     * behind it has to invert. */
+    --brand: #d92d22;
+    --brand-soft: #3a1512;
 
     --ring-track: #22304a;
     --shadow-panel:
@@ -95,6 +109,8 @@
     --color-alert-soft: var(--alert-soft);
     --color-beacon: var(--beacon);
     --color-beacon-soft: var(--beacon-soft);
+    --color-brand: var(--brand);
+    --color-brand-soft: var(--brand-soft);
 
     --shadow-panel: var(--shadow-panel);
     --shadow-lift: var(--shadow-lift);

@@ -23,7 +23,7 @@ const props = withDefaults(
 
 const variants = {
     primary:
-        'bg-signal text-[#06231b] hover:brightness-108 active:brightness-95 shadow-[0_1px_0_rgba(255,255,255,0.25)_inset]',
+        'bg-brand text-white hover:brightness-110 active:brightness-95 shadow-[0_1px_0_rgba(255,255,255,0.25)_inset]',
     secondary:
         'bg-panel-raised text-text border border-line hover:border-faint hover:bg-line-soft',
     ghost: 'text-muted hover:text-text hover:bg-line-soft',
