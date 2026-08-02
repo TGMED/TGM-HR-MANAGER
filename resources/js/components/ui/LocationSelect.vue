@@ -20,9 +20,15 @@ const props = withDefaults(
         required?: boolean;
         optional?: boolean;
         placeholder?: string;
+        emptyText?: string;
         id?: string;
     }>(),
-    { required: false, optional: false, placeholder: 'Select a location' },
+    {
+        required: false,
+        optional: false,
+        placeholder: 'Select a location',
+        emptyText: 'No locations available yet',
+    },
 );
 
 const model = defineModel<number | null>();
@@ -194,7 +200,7 @@ watch(
                         </span>
                     </template>
                     <span v-else class="text-[15px] text-faint">
-                        {{ placeholder }}
+                        {{ options.length ? placeholder : emptyText }}
                     </span>
                 </span>
 
@@ -221,6 +227,14 @@ watch(
                     role="listbox"
                     class="animate-drop-in absolute z-30 mt-2 max-h-72 w-full overflow-y-auto rounded-xl border border-line bg-panel-raised p-1 shadow-lift"
                 >
+                    <li
+                        v-if="!options.length"
+                        role="presentation"
+                        class="px-3 py-2.5 text-[13px] leading-snug text-faint"
+                    >
+                        {{ emptyText }}
+                    </li>
+
                     <li
                         v-for="(site, index) in options"
                         :key="site.id"

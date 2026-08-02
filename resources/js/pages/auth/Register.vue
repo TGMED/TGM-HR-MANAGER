@@ -91,6 +91,7 @@ function submit() {
                 optional
                 :options="locations"
                 placeholder="Choose your site"
+                empty-text="No sites are open for signup yet"
                 :error="form.errors.location_id"
                 :hint="locationHint"
             />
