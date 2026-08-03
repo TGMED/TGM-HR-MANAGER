@@ -20,7 +20,7 @@ class LocationSeeder extends Seeder
      *
      * Addresses are taken verbatim from the branch address sheet. The
      * coordinates are district-level approximations, NOT surveyed to the
-     * building — an administrator must drag each pin onto the actual door on
+     * building, so an administrator must drag each pin onto the actual door on
      * the Locations page before staff rely on the geofence. The radius is set
      * generously for the same reason.
      *

@@ -75,7 +75,7 @@ class ClockInTest extends TestCase
 
     public function test_arriving_after_the_grace_window_is_marked_late(): void
     {
-        // 09:25 Lagos — 25 minutes past a 09:00 start with 10 minutes grace.
+        // 09:25 Lagos, 25 minutes past a 09:00 start with 10 minutes grace.
         Carbon::setTestNow(Carbon::parse('2026-06-15 08:25:00', 'UTC'));
 
         $user = $this->staff();

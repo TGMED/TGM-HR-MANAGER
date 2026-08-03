@@ -57,8 +57,8 @@ class AppServiceProvider extends ServiceProvider
         );
 
         // The signup form mirrors these rules as a live checklist, so they must
-        // hold in every environment. Only the breach check — which costs an
-        // HTTP round trip — stays gated to production.
+        // hold in every environment. Only the breach check, which costs an
+        // HTTP round trip, stays gated to production.
         Password::defaults(fn (): Password => Password::min(8)
             ->mixedCase()
             ->letters()
