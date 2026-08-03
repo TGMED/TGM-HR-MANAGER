@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
         $locations = $this->seedLocations();
 
         // Admins run the clock rather than punch it, so this one gets no
-        // attendance of its own — only a base office for display.
+        // attendance of its own, only a base office for display.
         User::factory()->superAdmin()->create([
             'employee_id' => 'TGM-0001',
             'name' => 'Chidi Okafor',
@@ -59,7 +59,7 @@ class DatabaseSeeder extends Seeder
      * The eight TGM Education branches.
      *
      * Lives in {@see LocationSeeder} so the branches can be seeded on their own
-     * — `db:seed --class=LocationSeeder` — without also creating the demo staff
+     * (`db:seed --class=LocationSeeder`) without also creating the demo staff
      * and attendance below, which have no place on a production database.
      *
      * @return array<string, Location>

@@ -10,7 +10,7 @@ export type PasswordRule = {
 };
 
 /**
- * These mirror `Password::defaults()` in AppServiceProvider one for one — same
+ * These mirror `Password::defaults()` in AppServiceProvider one for one, using the same
  * order, same Unicode classes Laravel's validator uses. If the server rules
  * change, change these with them or the checklist starts lying.
  *

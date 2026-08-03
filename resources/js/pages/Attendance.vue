@@ -247,7 +247,7 @@ const resultTone = (result: string) =>
                                     {{
                                         record.clocked_out_at
                                             ? timeOfDay(record.clocked_out_at)
-                                            : '—'
+                                            : '-'
                                     }}
                                 </td>
                                 <td
@@ -256,7 +256,7 @@ const resultTone = (result: string) =>
                                     {{ duration(record.worked_minutes) }}
                                 </td>
                                 <td class="px-5 py-3 text-[12.5px] text-muted">
-                                    {{ record.location_name ?? '—' }}
+                                    {{ record.location_name ?? '-' }}
                                 </td>
                                 <td
                                     class="tabular px-5 py-3 font-mono text-[12.5px] text-faint"

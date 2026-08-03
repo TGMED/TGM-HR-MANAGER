@@ -314,7 +314,7 @@ const statusOptions = [
                                                 : 'neutral'
                                         "
                                     >
-                                        {{ person.clocks_in ? 'Not set' : '—' }}
+                                        {{ person.clocks_in ? 'Not set' : '-' }}
                                     </StatusPill>
                                     <p
                                         v-if="person.location?.city"
@@ -326,7 +326,7 @@ const statusOptions = [
 
                                 <td class="px-5 py-3">
                                     <p class="text-[13px]">
-                                        {{ person.department ?? '—' }}
+                                        {{ person.department ?? '-' }}
                                     </p>
                                     <p
                                         class="truncate text-[11.5px] text-faint"
@@ -526,7 +526,7 @@ const statusOptions = [
                         :hint="
                             addForm.role === 'staff'
                                 ? 'Their punches are measured against this site.'
-                                : 'Optional — admins do not clock in.'
+                                : 'Optional. Admins do not clock in.'
                         "
                     >
                         <option :value="null" disabled>Choose a site</option>

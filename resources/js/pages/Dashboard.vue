@@ -560,7 +560,7 @@ const statusPill = computed(() => {
                                 <p
                                     class="tabular truncate font-mono text-[11.5px] text-faint"
                                 >
-                                    {{ site.city ?? '—' }} · opens
+                                    {{ site.city ?? '-' }} · opens
                                     {{ site.work_starts_at }}
                                 </p>
                             </div>
@@ -689,7 +689,7 @@ const statusPill = computed(() => {
                                     {{
                                         record.clocked_out_at
                                             ? timeOfDay(record.clocked_out_at)
-                                            : '—'
+                                            : '-'
                                     }}
                                 </td>
                                 <td

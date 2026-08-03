@@ -6,7 +6,7 @@
 
 export function timeOfDay(iso: string | null | undefined): string {
     if (!iso) {
-        return '—';
+        return '-';
     }
 
     return new Date(iso).toLocaleTimeString('en-US', {
@@ -18,7 +18,7 @@ export function timeOfDay(iso: string | null | undefined): string {
 
 export function shortDate(iso: string | null | undefined): string {
     if (!iso) {
-        return '—';
+        return '-';
     }
 
     return new Date(iso).toLocaleDateString('en-GB', {
@@ -29,7 +29,7 @@ export function shortDate(iso: string | null | undefined): string {
 
 export function fullDate(iso: string | null | undefined): string {
     if (!iso) {
-        return '—';
+        return '-';
     }
 
     return new Date(iso).toLocaleDateString('en-GB', {
@@ -42,7 +42,7 @@ export function fullDate(iso: string | null | undefined): string {
 
 export function dateTime(iso: string | null | undefined): string {
     if (!iso) {
-        return '—';
+        return '-';
     }
 
     return `${shortDate(iso)} · ${timeOfDay(iso)}`;
@@ -51,7 +51,7 @@ export function dateTime(iso: string | null | undefined): string {
 /** 95 -> "1h 35m". Used for worked hours and lateness alike. */
 export function duration(minutes: number | null | undefined): string {
     if (minutes === null || minutes === undefined) {
-        return '—';
+        return '-';
     }
 
     if (minutes < 60) {
@@ -81,7 +81,7 @@ export function offsetLabel(minutes: number | null | undefined): string {
 
 export function distance(meters: number | null | undefined): string {
     if (meters === null || meters === undefined) {
-        return '—';
+        return '-';
     }
 
     return meters >= 1000 ? `${(meters / 1000).toFixed(1)}km` : `${meters}m`;
@@ -90,7 +90,7 @@ export function distance(meters: number | null | undefined): string {
 /** "3 minutes ago" for the activity feeds. */
 export function relative(iso: string | null | undefined): string {
     if (!iso) {
-        return '—';
+        return '-';
     }
 
     const seconds = Math.round((Date.now() - new Date(iso).getTime()) / 1000);

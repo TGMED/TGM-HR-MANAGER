@@ -263,7 +263,7 @@ class StaffController extends Controller
                 'value' => $location->id,
                 'label' => $location->city === null
                     ? $location->name
-                    : "{$location->name} — {$location->city}",
+                    : "{$location->name}, {$location->city}",
             ])
             ->all();
     }

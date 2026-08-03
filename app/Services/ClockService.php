@@ -77,7 +77,7 @@ class ClockService
         ));
 
         $message = $status === AttendanceStatus::Late
-            ? sprintf('Clocked in at %s at %s — %s late.', $localNow->format('g:i A'), $location->name, $this->humanizeMinutes($lateMinutes))
+            ? sprintf('Clocked in at %s at %s, %s late.', $localNow->format('g:i A'), $location->name, $this->humanizeMinutes($lateMinutes))
             : sprintf('Clocked in at %s at %s. You are on time.', $localNow->format('g:i A'), $location->name);
 
         return new ClockResult(
@@ -154,7 +154,7 @@ class ClockService
         ])->save();
 
         $message = sprintf(
-            'Clocked out at %s — %s on the clock.',
+            'Clocked out at %s, %s on the clock.',
             $localNow->format('g:i A'),
             $this->humanizeMinutes((int) $attendance->worked_minutes),
         );

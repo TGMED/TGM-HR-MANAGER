@@ -6,7 +6,7 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 /*
- * TGM HR — "instrument panel"
+ * TGM HR "instrument panel"
  * A time clock answers two questions: what time is it, and am I in the right
  * place. The palette is cool navy instrumentation, aged brass for warnings,
  * and a signal mint for "you're good".
@@ -33,7 +33,7 @@
     --beacon-soft: #dee5fb;
 
     /*
-     * Brand. The logo's red is a scanned pure #ff0000 — too hot for UI and it
+     * Brand. The logo's red is a scanned pure #ff0000, too hot for UI and it
      * can't carry white label text, so it's tuned down to a shade that clears
      * 4.5:1. Deliberately narrow in scope: primary actions and the nav's
      * current-page marker only. Status colour stays with --signal.
@@ -160,7 +160,7 @@
 }
 
 @layer components {
-    /* Numbers are data here — keep every digit the same width. */
+    /* Numbers are data here, so keep every digit the same width. */
     .tabular {
         font-variant-numeric: tabular-nums;
         font-feature-settings: 'tnum';
