@@ -52,7 +52,7 @@ const { rules } = usePasswordRules(() => props.password);
 
                 <span>{{ rule.label }}</span>
                 <span class="sr-only">
-                    {{ rule.met ? '— met' : '— not met yet' }}
+                    {{ rule.met ? ', met' : ', not met yet' }}
                 </span>
             </li>
         </ul>

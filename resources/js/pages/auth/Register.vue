@@ -44,7 +44,7 @@ const locationHint = computed(() => {
 
     return props.locations.length
         ? 'You can set this later, but you need a site before you can clock in.'
-        : 'No sites are open for signup yet — create your account anyway and pick one from your dashboard.';
+        : 'No sites are open for signup yet. Create your account anyway and pick one from your dashboard.';
 });
 
 function submit() {

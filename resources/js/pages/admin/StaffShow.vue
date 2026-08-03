@@ -131,11 +131,11 @@ function confirmToggle() {
 }
 
 const details = [
-    { label: 'Staff ID', value: props.staff.employee_id ?? '—' },
+    { label: 'Staff ID', value: props.staff.employee_id ?? '-' },
     { label: 'Email', value: props.staff.email },
-    { label: 'Phone', value: props.staff.phone ?? '—' },
-    { label: 'Department', value: props.staff.department ?? '—' },
-    { label: 'Job title', value: props.staff.position ?? '—' },
+    { label: 'Phone', value: props.staff.phone ?? '-' },
+    { label: 'Department', value: props.staff.department ?? '-' },
+    { label: 'Job title', value: props.staff.position ?? '-' },
     { label: 'Role', value: props.staff.role_label },
     {
         label: 'Work location',
@@ -143,11 +143,11 @@ const details = [
     },
     {
         label: 'Clocks in',
-        value: props.staff.clocks_in ? 'Yes' : 'No — administrator',
+        value: props.staff.clocks_in ? 'Yes' : 'No, administrator',
     },
     {
         label: 'Started',
-        value: props.staff.hired_at ? fullDate(props.staff.hired_at) : '—',
+        value: props.staff.hired_at ? fullDate(props.staff.hired_at) : '-',
     },
 ];
 
@@ -397,7 +397,7 @@ const resultTone = (result: string) =>
                                                     ? timeOfDay(
                                                           record.clocked_out_at,
                                                       )
-                                                    : '—'
+                                                    : '-'
                                             }}
                                         </td>
                                         <td
@@ -595,7 +595,7 @@ const resultTone = (result: string) =>
                         :hint="
                             form.role === 'staff'
                                 ? undefined
-                                : 'Optional — admins do not clock in.'
+                                : 'Optional. Admins do not clock in.'
                         "
                     >
                         <option :value="null" disabled>Choose a site</option>

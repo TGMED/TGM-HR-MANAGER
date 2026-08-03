@@ -213,7 +213,7 @@ function mapLink(attempt: Attempt): string | null {
                                     {{
                                         attempt.user.employee_id ??
                                         attempt.user.department ??
-                                        '—'
+                                        '-'
                                     }}
                                 </span>
                             </span>
