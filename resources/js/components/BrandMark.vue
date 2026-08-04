@@ -1,9 +1,9 @@
 <script setup lang="ts">
 /**
- * The supplied logo is dark ink with no light-on-dark variant, so a second
- * artwork is generated with the neutral ink lifted to the panel's text colour
- * and the brand red left untouched. Swapping the two by theme lets the mark sit
- * directly on the surface rather than on a white plate.
+ * Two artworks ship with the brand: dark ink for light surfaces and light ink
+ * for dark ones. Swapping the two by theme lets the mark sit directly on the
+ * surface rather than on a white plate. The wordmark is close to 10:1, so the
+ * heights below stay small enough to keep it inside the 264px nav rail.
  */
 withDefaults(
     defineProps<{
@@ -14,9 +14,9 @@ withDefaults(
 );
 
 const marks = {
-    sm: 'h-8',
-    md: 'h-11',
-    lg: 'h-14',
+    sm: 'h-5',
+    md: 'h-6',
+    lg: 'h-7',
 } as const;
 </script>
 
@@ -25,10 +25,10 @@ const marks = {
         <span class="relative inline-flex shrink-0 items-center">
             <img
                 src="/images/tgm-logo.png"
-                alt="TGMarchnata"
+                alt="TGM Education"
                 :class="['w-auto dark:hidden', marks[size]]"
-                width="774"
-                height="239"
+                width="932"
+                height="98"
                 decoding="async"
             />
             <img
@@ -36,8 +36,8 @@ const marks = {
                 alt=""
                 aria-hidden="true"
                 :class="['hidden w-auto dark:block', marks[size]]"
-                width="774"
-                height="239"
+                width="932"
+                height="98"
                 decoding="async"
             />
         </span>
